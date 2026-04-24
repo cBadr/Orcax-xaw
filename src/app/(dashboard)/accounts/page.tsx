@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { supabaseServer } from "@/lib/supabase/server";
+import SyncButton from "@/components/SyncButton";
 
 export const dynamic = "force-dynamic";
 
@@ -37,9 +38,14 @@ export default async function AccountsPage() {
                   <div className="text-xs text-red-600 mt-1">⚠ {a.sync_error}</div>
                 )}
               </div>
-              <span className="text-xs uppercase tracking-wide text-slate-400">
-                {a.display_name}
-              </span>
+              <div className="flex items-center gap-3">
+                {a.display_name && (
+                  <span className="text-xs uppercase tracking-wide text-slate-400">
+                    {a.display_name}
+                  </span>
+                )}
+                <SyncButton accountId={a.id} />
+              </div>
             </div>
           ))}
         </div>
