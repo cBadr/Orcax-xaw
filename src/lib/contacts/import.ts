@@ -111,7 +111,9 @@ async function processMailbox(
     }) as AsyncIterable<FetchMessageObject>) {
       const env = msg.envelope;
       if (!env) continue;
-      const occurredAt = (env.date || msg.internalDate || new Date()).toISOString();
+      const occurredAt = new Date(
+        env.date || msg.internalDate || Date.now(),
+      ).toISOString();
       const subject = env.subject || null;
 
       const fromList: RawAddress[] = (env.from || []).map((a) => ({
