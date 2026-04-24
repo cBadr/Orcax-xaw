@@ -67,7 +67,7 @@ export default async function ContactsPage({
                   <td className="px-4 py-3 text-slate-600">{c.company || ""}</td>
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
-                      {(c.tags || []).map((t) => (
+                      {((c.tags as string[] | null) || []).map((t: string) => (
                         <span key={t} className="text-xs bg-slate-100 rounded px-2 py-0.5">
                           {t}
                         </span>
