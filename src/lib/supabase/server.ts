@@ -10,10 +10,10 @@ export async function supabaseServer() {
     {
       cookies: {
         getAll: () => cookieStore.getAll(),
-        setAll: (all) => {
+        setAll: (all: { name: string; value: string; options?: Record<string, unknown> }[]) => {
           try {
             all.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options),
+              cookieStore.set(name, value, options as never),
             );
           } catch {
             // Called from a Server Component — ignore; middleware refreshes cookies.
